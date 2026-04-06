@@ -1,0 +1,1 @@
+/Users/jason/Library/Mobile Documents/iCloud~md~obsidian/Documents/Valut/projects/lcc/db/TABLE_DEFINITIONS.md

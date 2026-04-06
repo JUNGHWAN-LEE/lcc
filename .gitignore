@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 데이터베이스
+*.db
+*.db-shm
+*.db-wal
+
+# Claude / AI 도구
+.claude/
+.claudeignore
+.kkirikkiri/
+.brv/
