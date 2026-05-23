@@ -31,7 +31,12 @@ export function checkProcess(pattern: string): "running" | "stopped" {
   try {
     // pgrep -f: 전체 커맨드라인에서 패턴 검색
     // exitcode 0이면 프로세스 존재, 1이면 없음
-    execSync(`pgrep -f "${pattern}"`, { stdio: "pipe" });
+    //
+    // `-- ` (옵션 종료자) 를 반드시 붙여야 한다.
+    // 그렇지 않으면 pattern 이 `--account F1$` 처럼 `-`로 시작할 때
+    // pgrep 이 이를 옵션으로 해석해 `illegal option -- -` 로 실패하고,
+    // 실제 프로세스가 돌고 있어도 catch 로 빠져서 "stopped" 로 보고된다.
+    execSync(`pgrep -f -- "${pattern}"`, { stdio: "pipe" });
     return "running";
   } catch {
     return "stopped";
@@ -42,7 +47,8 @@ export function checkProcess(pattern: string): "running" | "stopped" {
 // 예: worker 여러 개를 띄운 경우
 export function getProcessPids(pattern: string): number[] {
   try {
-    const output = execSync(`pgrep -f "${pattern}"`, { stdio: "pipe" })
+    // `--` 로 옵션 해석을 차단 (checkProcess 주석 참고)
+    const output = execSync(`pgrep -f -- "${pattern}"`, { stdio: "pipe" })
       .toString()
       .trim();
     return output.split("\n").map(Number).filter(Boolean);
@@ -241,7 +247,8 @@ export function stopProcess(pattern: string): {
 } {
   try {
     // pkill -f: 전체 커맨드라인에서 패턴 매칭해서 종료
-    execSync(`pkill -f "${pattern}"`, { stdio: "pipe" });
+    // `--` 로 옵션 해석 차단 (pattern 이 `-`로 시작하는 경우 대응)
+    execSync(`pkill -f -- "${pattern}"`, { stdio: "pipe" });
     return { success: true, killed: 1 };
   } catch (err: unknown) {
     // exit code 1 = 매칭 프로세스 없음 (이미 종료됨)
