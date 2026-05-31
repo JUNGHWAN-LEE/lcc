@@ -101,6 +101,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../../../../app/api/batch/[id]/run/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/batch/[id]/run">> = Specific
+  const handler = {} as typeof import("../../../../../../app/api/batch/[id]/run/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../../../../app/api/batch/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/batch">> = Specific
@@ -123,6 +132,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/launchagents/[label]">> = Specific
   const handler = {} as typeof import("../../../../../../app/api/launchagents/[label]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../../../../app/api/launchagents/[label]/toggle/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/launchagents/[label]/toggle">> = Specific
+  const handler = {} as typeof import("../../../../../../app/api/launchagents/[label]/toggle/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
