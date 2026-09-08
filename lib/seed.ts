@@ -160,14 +160,14 @@ const SEED_BATCH_JOBS = [
     working_dir: "~/projects/batch",
   },
   {
-    name: "바이낸스 변동성 분석 발송",
-    description: "binance-vol-stats 분석 결과 텔레그램 발송",
+    name: "바이낸스 변동성 분석",
+    description: "binance-vol-stats 분석 결과 콘솔 출력",
     command: "/opt/homebrew/bin/python3 volatility_sender.py",
     working_dir: "~/projects/batch",
   },
   {
-    name: "바이낸스 저점 거래량 발송",
-    description: "binance-futures-bottom-volume 분석 결과 텔레그램 발송",
+    name: "바이낸스 저점 거래량 분석",
+    description: "binance-futures-bottom-volume 분석 결과 콘솔 출력",
     command: "/opt/homebrew/bin/python3 bottom_volume_sender.py",
     working_dir: "~/projects/batch",
   },
